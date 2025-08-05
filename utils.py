@@ -5,23 +5,16 @@ pm = PasswordManager()
 def validate_main_password():
     main_password = pm.main_password
     if len(main_password) < 8: # type: ignore
-        print("Main password must be at least 8 characters long.")
+        print("Main password must be at least 8 characters long. Please try again.")
         return False
     if not any(char.isupper() for char in main_password): # type: ignore
-        print("Main password must contain at least one uppercase letter.")
+        print("Main password must contain at least one uppercase letter. Please try again.")
         return False
     if not any(char.islower() for char in main_password): # type: ignore
-        print("Main password must contain at least one lowercase letter.")
+        print("Main password must contain at least one lowercase letter. Please try again.")
         return False
     if not any(char.isdigit() for char in main_password): # type: ignore
-        print("Main password must contain at least one digit.")
+        print("Main password must contain at least one digit. Please try again.")
         return False
     return True
 
-def get_main_password():
-    while True:
-        main_password = input("Enter your main password: ")
-        if validate_main_password():
-            return main_password
-        else:
-            continue
