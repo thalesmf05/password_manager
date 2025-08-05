@@ -6,18 +6,19 @@ class Password:
         self.web_site = web_site
         self.user = user
         self.password = password
+    
 
     def __str__(self):
-        return f"Site: {self.web_site} | User: {self.protected_user()} | Password: {self.protected_password()}"
+        return f"Site: {self.web_site} | User: {self.protected_user()} | Password: {self.protected_password_code()}"
 
     def change_user(self, new_user):
         self.user = new_user
 
 
-    def change_password(self, new_password):
+    def change_password_code(self, new_password):
         self.password = new_password
     
-    def protected_password(self): #ok
+    def protected_password_code(self): #ok
         return "*"*len(self.password)
     
     def protected_user(self): #ok
