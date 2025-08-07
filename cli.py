@@ -1,21 +1,26 @@
-from math import e
 from password_manager import PasswordManager
-import password_manager
-from utils import validate_main_password
+import utils
+import cli
 
-pm = PasswordManager()
-def get_main_password():
+
+def get_new_main_password(password_manager):
     while True:
         main_password = input("Enter your main password: ")
-        if validate_main_password() is True:
+        if utils.is_password_strength(main_password)[0] is True:
             return main_password
         else:
-            continue 
+            print(utils.is_password_strength(main_password)[1])
+            continue
 
+def check_user_exists(password_manager):
+    if utils.user_exists(password_manager):
+        print("Welcome back!")
+    else:
+        cli.create_user(password_manager)
+        print("Your account has been created successfully!")
 
-def new_user():
+def create_user(password_manager):
     print("Welcome to my python password manager!!")
-    user_name = input("Enter your name: ")
-    main_password = get_main_password()
-    
-
+    main_password = get_new_main_password(password_manager)
+    password_manager.set_main_password(main_password)
+    print("Your main password has been set successfully!")

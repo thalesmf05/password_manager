@@ -2,20 +2,22 @@ from password import Password
 from password_manager import PasswordManager
 from storage import StorageManager 
 import cli
+from storage import json_path
+import utils
 
-cli.new_user()
+password_manager = PasswordManager()
+storage_manager = StorageManager()  
 
 
-eu = Password("gmail", "eu@gmail.com", "1")
-ela = Password("hotmail", "ela@hotmail.com.br", "ela_linda")
+def main(password_manager):
+    # check if user exists and if not create one
+    cli.check_user_exists(password_manager)
 
-p = PasswordManager()
-p.add_password(eu)
-p.add_password(ela)
-storage = StorageManager()
-json_path = "passwords.json"  # Define the path to save the JSON file
-storage.save_to_file(json_path)
+    
 
-storage.load_from_file(json_path)
-print(storage.passwords)  # This will print the loaded passwords
-
+if __name__ == "__main__":
+    
+    storage_manager.load_from_file(json_path)
+    password_manager.passwords = storage_manager.passwords
+    
+    main(password_manager)

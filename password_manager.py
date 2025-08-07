@@ -7,8 +7,12 @@ class PasswordManager:
         self.main_password = None
         self.passwords = []
 
+
     def set_main_password(self, main_password):
         self.main_password = main_password
+    
+    def get_main_password(self):
+        return self.main_password
 
     def add_password(self, password):
         self.passwords.append(password)

@@ -20,4 +20,3 @@ class StorageManager:
         except FileNotFoundError:
             self.passwords = []
 
-st = StorageManager()
